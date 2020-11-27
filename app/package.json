@@ -8,22 +8,28 @@
   "scripts": {
     "build": "webpack",
     "serve": "webpack serve",
-    "servesecure": "webpack serve --https"
+    "servesecure": "webpack serve --https",
+    "lint": "eslint 'src/**/*.{ts,vue}' --fix",
+    "format": "prettier --config .prettier.config.js 'src/**/*.{ts,vue}' --write"
   },
   "private": true,
   "dependencies": {
+    "buefy": "^0.9.4",
     "vue": "^2.6.12",
     "vue-router": "^3.4.9"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
     "css-loader": "^5.0.1",
     "eslint": "^7.14.0",
     "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^7.1.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.0",
     "prettier": "^2.2.0",
+    "prettier-eslint": "^12.0.0",
     "sass-loader": "^10.1.0",
     "source-map-loader": "^1.1.2",
     "style-loader": "^2.0.0",

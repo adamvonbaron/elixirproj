@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -26,8 +27,8 @@ module.exports = {
         exclude: /node_modules/,
         loader: "ts-loader",
         options: {
-          appendTsSuffixTo: [/\.vue$/]
-        }
+          appendTsSuffixTo: [/\.vue$/],
+        },
       },
       {
         test: /\.vue$/,
@@ -36,9 +37,9 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-        {
-            loader: "vue-style-loader"
-        },
+          {
+            loader: "vue-style-loader",
+          },
           {
             loader: "style-loader",
           },
@@ -62,11 +63,11 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: ["file-loader"],
       },
-    //   {
-    //     test: /\.(graphql|gql)$/,
-    //     exclude: /node_modules/,
-    //     use: ["graphql-tag/loader"],
-    //   },
+      //   {
+      //     test: /\.(graphql|gql)$/,
+      //     exclude: /node_modules/,
+      //     use: ["graphql-tag/loader"],
+      //   },
     ],
   },
   plugins: [

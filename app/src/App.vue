@@ -1,13 +1,14 @@
 <template>
-    <div id="app">
-        <h3>hello from vue</h3>
-    </div>
+  <div id="app">
+    <h3>hello from vue</h3>
+    <b-button>click here</b-button>
+  </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 
 export default Vue.extend({
-    name: "App",    
-})
+  name: "App",
+});
 </script>

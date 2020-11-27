@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack",
-    "serve": "webpack-dev-server",
-    "servesecure": "webpack-dev-server --https"
+    "serve": "webpack serve",
+    "servesecure": "webpack serve --https"
   },
   "private": true,
   "dependencies": {

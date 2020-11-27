@@ -1,14 +1,15 @@
 <template>
   <div id="app">
-    <h3>hello from vue</h3>
-    <b-button>click here</b-button>
+    <login />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import Login from "@/components/Login.vue";
 
 export default Vue.extend({
   name: "App",
+  components: { Login },
 });
 </script>

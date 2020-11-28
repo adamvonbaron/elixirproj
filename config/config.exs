@@ -18,6 +18,11 @@ config :loquor, LoquorWeb.Endpoint,
   pubsub_server: Loquor.PubSub,
   live_view: [signing_salt: "a8zOMXR5"]
 
+# use guardian for authentication
+config :loquor, Loquor.Guardian,
+  issuer: "loquor",
+  secret_key: "lemonadewasapopulardrinkanditstillis"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

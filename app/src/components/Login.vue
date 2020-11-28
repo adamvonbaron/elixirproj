@@ -8,7 +8,7 @@
         <b-input v-model="password" type="password" />
       </b-field>
       <b-field>
-        <b-button class="is-primary">login</b-button>
+        <b-button class="is-primary" @click="loginUser()">login</b-button>
       </b-field>
     </form>
   </div>
@@ -24,6 +24,11 @@ export default Vue.extend({
       email: "",
       password: "",
     };
+  },
+  methods: {
+    loginUser() {
+      console.log({ email: this.email, password: this.password });
+    },
   },
 });
 </script>

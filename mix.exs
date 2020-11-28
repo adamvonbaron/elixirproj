@@ -45,7 +45,8 @@ defmodule Loquor.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:ecto_psql_extras , "~> 0.4.1"},
       {:comeonin, "~> 5.3"},
-      {:argon2_elixir, "~> 2.3"}
+      {:argon2_elixir, "~> 2.3"},
+      {:guardian, "~> 2.1"}
     ]
   end
 

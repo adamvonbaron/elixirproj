@@ -5,8 +5,19 @@ defmodule LoquorWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :graphql, do: plug(LoquorWeb.Context)
+
   scope "/api", LoquorWeb do
     pipe_through :api
+
+    post "/login", LoquorWeb.AuthController, :login
+    post "/logout", LoquorWeb.AuthController, :logout
+  end
+
+  scope "/graphql", LoquorWeb do
+    pipe_through :graphql
+
+    forward "/", Absinthe.Plug, schema: LoquorWeb.Schema
   end
 
   # Enables LiveDashboard only for development
@@ -23,5 +34,7 @@ defmodule LoquorWeb.Router do
       pipe_through [:fetch_session, :protect_from_forgery]
       live_dashboard "/dashboard", metrics: LoquorWeb.Telemetry
     end
+
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: LoquorWeb.Schema
   end
 end

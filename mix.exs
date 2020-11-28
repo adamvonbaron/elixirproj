@@ -41,12 +41,16 @@ defmodule Loquor.MixProject do
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
+      {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.0"},
-      {:ecto_psql_extras , "~> 0.4.1"},
+      {:ecto_psql_extras, "~> 0.4.1"},
       {:comeonin, "~> 5.3"},
       {:argon2_elixir, "~> 2.3"},
-      {:guardian, "~> 2.1"}
+      {:guardian, "~> 2.1"},
+      {:absinthe, "~> 1.5"},
+      {:absinthe_plug, "~> 1.5"},
+      {:absinthe_phoenix, "~> 2.0"},
+      {:dataloader, "~> 1.0"}
     ]
   end
 

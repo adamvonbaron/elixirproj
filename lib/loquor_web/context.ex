@@ -1,4 +1,4 @@
-defmodule LoquorWeb.Authentication do
+defmodule LoquorWeb.Context do
   @behaviour Plug
 
   import Plug.Conn
@@ -24,5 +24,5 @@ defmodule LoquorWeb.Authentication do
     end
   end
 
-  defp authorize_user(jwt), do: :not_implemented
+  defp authorize_user(_), do: :not_implemented
 end

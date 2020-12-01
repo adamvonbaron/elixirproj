@@ -1,3 +1,4 @@
+/* eslint-disable-next-line */
 module.exports = {
   root: true,
   parser: "vue-eslint-parser",
@@ -16,5 +17,7 @@ module.exports = {
   ],
   rules: {
     "prettier/prettier": ["error"],
+    "vue/max-attributes-per-line": "off",
+    "vue/singleline-html-element-content-newline": "off",
   },
 };

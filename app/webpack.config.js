@@ -63,11 +63,11 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: ["file-loader"],
       },
-      //   {
-      //     test: /\.(graphql|gql)$/,
-      //     exclude: /node_modules/,
-      //     use: ["graphql-tag/loader"],
-      //   },
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        use: ["graphql-tag/loader"],
+      },
     ],
   },
   plugins: [

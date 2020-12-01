@@ -1,0 +1,52 @@
+{
+  "vetur.format.enable": true,
+  "editor.cursorStyle": "block",
+  "telemetry.enableTelemetry": false,
+  "telemetry.enableCrashReporter": false,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "editor.formatOnType": true,
+  "files.autoSave": "off",
+  "explorer.confirmDragAndDrop": false,
+  "editor.formatOnSave": true,
+  "[elixir]": {
+    "editor.defaultFormatter": "JakeBecker.elixir-ls",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.wordBasedSuggestions": false,
+    "editor.formatOnType": true,
+    "editor.trimAutoWhitespace": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[vue]": {
+    "gitlens.codeLens.scopes": ["document"],
+    "editor.defaultFormatter": "octref.vetur"
+  },
+  "[vue-html]": {
+    "editor.defaultFormatter": "octref.vetur"
+  },
+  "[vue-postcss]": {
+    "editor.defaultFormatter": "octref.vetur"
+  },
+  "[json]": {
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.insertMode": "replace",
+    "gitlens.codeLens.scopes": ["document"],
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.suggest.insertMode": "replace",
+    "gitlens.codeLens.scopes": ["document"]
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

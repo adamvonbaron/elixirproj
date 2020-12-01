@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import axios from "@/axios";
+import axios from "../axios";
 
 export default Vue.extend({
   name: "Login",
@@ -28,7 +28,11 @@ export default Vue.extend({
   },
   methods: {
     async loginUser() {
-      await something();
+      const resp = await axios.post("/login", {
+        email: this.email,
+        password: this.password,
+      });
+      console.log({ resp });
     },
   },
 });

@@ -2,7 +2,7 @@ defmodule LoquorWeb.GraphQL.Schema do
   use Absinthe.Schema
   import_types(Absinthe.Type.Custom)
 
-  alias LoquorWeb.GraphQL.Resolvers
+  # alias LoquorWeb.GraphQL.Resolvers
 
   @desc "get the data my man"
   query do

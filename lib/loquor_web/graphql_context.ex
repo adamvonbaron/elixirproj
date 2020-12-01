@@ -1,4 +1,4 @@
-defmodule LoquorWeb.Context do
+defmodule LoquorWeb.GraphQLContext do
   @behaviour Plug
 
   import Plug.Conn
@@ -7,7 +7,7 @@ defmodule LoquorWeb.Context do
 
   def call(conn, _) do
     case build_context(conn) do
-      # {:ok, context} -> TODO: GraphQL Allow Connection
+      {:ok, _context} -> conn
       {:error, reason} -> conn |> send_resp(:unauthorized, reason) |> halt
     end
   end
@@ -24,5 +24,5 @@ defmodule LoquorWeb.Context do
     end
   end
 
-  defp authorize_user(_), do: :not_implemented
+  defp authorize_user(_), do: {:ok, %{}}
 end

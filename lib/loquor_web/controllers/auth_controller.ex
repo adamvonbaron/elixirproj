@@ -1,6 +1,10 @@
 defmodule LoquorWeb.AuthController do
   use LoquorWeb, :controller
 
+  alias LoquorWeb.Authentication
+  alias Loquor.Guardian
+  alias Loquor.Schemas.User
+
   @cookie_opts [
     encrypted: true,
     http_only: true,
@@ -10,8 +14,7 @@ defmodule LoquorWeb.AuthController do
   def login(conn, params) do
     with {:ok, user} <- Authentication.verify_user(params) do
       conn
-      |> put_status(:ok)
-      |> put_resp_cookie("jwt", Authentication.generate_token(user), @cookie_opts)
+      |> Guardian.Plug.sign_in(%User{})
       |> render("login.json", user: user)
     end
   end

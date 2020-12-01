@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import axios from "@/axios";
 
 export default Vue.extend({
   name: "Login",
@@ -26,8 +27,8 @@ export default Vue.extend({
     };
   },
   methods: {
-    loginUser() {
-      console.log({ email: this.email, password: this.password });
+    async loginUser() {
+      await something();
     },
   },
 });

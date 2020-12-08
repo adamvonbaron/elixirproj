@@ -1,11 +1,6 @@
 import VueRouter from "vue-router";
-import LoginView from "@/views/LoginView.vue";
-import NotFoundView from "@/views/NotFoundView.vue";
 
-const routes = [
-  { path: "/", component: LoginView },
-  { path: "*", component: NotFoundView },
-];
+import routes from "@/routes";
 
 const router = new VueRouter({
   routes,

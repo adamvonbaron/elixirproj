@@ -34,8 +34,12 @@ npm-debug.log
 /priv/static/
 
 # other stuff
+/priv/cert
 *.beam
 /config/*.secret.exs
 .elixir_ls/
+
+
+# frontend
 app/node_modules
 app/dist

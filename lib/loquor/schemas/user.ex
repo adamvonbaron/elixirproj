@@ -22,22 +22,6 @@ defmodule Loquor.Schemas.User do
   #   end
   # end
 
-  @doc """
-  returns user from database using email password combo
-
-  ## Examples
-
-    iex> verify_user %{email: "test@test.com", password: "example_pass"}
-    %{:ok, %User{}}
-  """
-  def verify_user(%{"email" => email, "password" => password}) do
-    case Loquor.Repo.get_by(%__MODULE__{}, email: email) do
-      %__MODULE__{} = user -> user |> Argon2.check_pass(password)
-      nil -> {:error, "No user with that email"}
-    end
-  end
-
-
   @doc false
   def changeset(user, attrs) do
     user

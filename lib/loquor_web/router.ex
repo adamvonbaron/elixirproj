@@ -5,10 +5,8 @@ defmodule LoquorWeb.Router do
     plug :accepts, ["json"]
   end
 
-  pipeline :verify_auth do
-    plug Guardian.Plug.VerifySession
-    plug Guardian.Plug.VerifyHeader, realm: "Bearer"
-    plug Guardian.Plug.LoadResource
+  pipeline :check_auth do
+    plug Loquor.Guardian.Pipeline
   end
 
   pipeline :ensure_auth do
@@ -22,14 +20,14 @@ defmodule LoquorWeb.Router do
   end
 
   scope "/api", LoquorWeb do
-    pipe_through [:api, :verify_auth]
+    pipe_through [:api, :check_auth]
 
     post "/login", AuthController, :login
     post "/logout", AuthController, :logout
   end
 
   scope "/graphql", LoquorWeb do
-    pipe_through [:verify_auth, :ensure_auth, :graphql]
+    pipe_through [:check_auth, :ensure_auth, :graphql]
 
     # forward "/", Absinthe.Plug, schema: LoquorWeb.Schema
   end

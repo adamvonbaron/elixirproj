@@ -28,10 +28,14 @@ export default Vue.extend({
   },
   methods: {
     async loginUser() {
-      const resp = await axios.post("/login", {
-        email: this.email,
-        password: this.password,
-      });
+      const resp = await axios.post(
+        "/login",
+        {
+          email: this.email,
+          password: this.password,
+        },
+        { withCredentials: true }
+      );
       console.log({ resp });
     },
   },

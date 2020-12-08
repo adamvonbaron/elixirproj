@@ -3,26 +3,27 @@ defmodule LoquorWeb.AuthController do
 
   alias LoquorWeb.Authentication
   alias Loquor.Guardian
-  alias Loquor.Schemas.User
 
   @cookie_opts [
     encrypted: true,
     http_only: true,
-    secure: true
+    secure: true,
+    same_site: "Strict"
   ]
 
   def login(conn, params) do
-    with {:ok, user} <- Authentication.verify_user(params) do
+    IO.inspect(params)
+
+    with {:ok, user} <- Authentication.verify_user(params),
+         {:ok, token, _claims} <- Guardian.encode_and_sign(user) do
       conn
-      |> Guardian.Plug.sign_in(%User{})
-      |> render("login.json", user: user)
+      |> Guardian.Plug.sign_in(user)
+      |> put_resp_cookie("jwt", token, @cookie_opts)
+      |> render("login.json", user: user, token: token)
     end
   end
 
   def logout(conn, _params) do
-    conn
-    |> delete_resp_cookie("jwt", @cookie_opts)
-    |> resp(:ok, "")
-    |> send_resp
+    conn |> Guardian.Plug.sign_out() |> send_resp(200, %{})
   end
 end

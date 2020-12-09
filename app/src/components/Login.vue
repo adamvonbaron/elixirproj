@@ -17,6 +17,7 @@
 <script lang="ts">
 import Vue from "vue";
 import axios from "../axios";
+import { storeUser } from "../services/authentication";
 
 export default Vue.extend({
   name: "Login",
@@ -28,7 +29,7 @@ export default Vue.extend({
   },
   methods: {
     async loginUser() {
-      const resp = await axios.post(
+      const { data } = await axios.post(
         "/login",
         {
           email: this.email,
@@ -36,7 +37,8 @@ export default Vue.extend({
         },
         { withCredentials: true }
       );
-      console.log({ resp });
+      storeUser(data);
+      this.$router.push({ path: "/home" });
     },
   },
 });

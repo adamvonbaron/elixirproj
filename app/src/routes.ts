@@ -22,7 +22,6 @@ export default [
     component: LoginView,
     name: LOGIN_ROUTE,
     beforeEnter: (to: Route, from: Route, next: NavigationGuardNext<Vue>) => {
-      console.log({ to, from });
       if (getUser() !== null) {
         next({
           name: HOME_ROUTE,

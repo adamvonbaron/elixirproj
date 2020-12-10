@@ -23,5 +23,6 @@ export default Vue.extend({
 <style lang="scss">
 .feed {
   height: 100%;
+  padding-top: 66px;
 }
 </style>

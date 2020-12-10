@@ -24,6 +24,9 @@ defmodule LoquorWeb.AuthController do
   end
 
   def logout(conn, _params) do
-    conn |> Guardian.Plug.sign_out() |> send_resp(200, %{})
+    conn
+    |> Guardian.Plug.sign_out()
+    |> delete_resp_cookie("jwt", @cookie_opts)
+    |> send_resp(200, "ok")
   end
 end

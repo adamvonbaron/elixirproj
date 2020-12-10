@@ -43,3 +43,4 @@ npm-debug.log
 # frontend
 app/node_modules
 app/dist
+app/coverage

@@ -1,6 +1,8 @@
 defmodule Loquor.Schemas.User do
   use Loquor.Schema
   import Ecto.Changeset
+  alias Loquor.Schemas.Post
+  alias Loquor.Schemas.Comment
 
   schema "users" do
     field :email, :string
@@ -10,17 +12,12 @@ defmodule Loquor.Schemas.User do
     field :password, :string, virtual: true
     field :username, :string
 
-    # has_many :friends,
+    many_to_many :friends, __MODULE__, join_through: "friendships"
+    has_many :posts, Post
+    has_many :comments, Comment
 
     timestamps()
   end
-
-  # def validate_password(user, password) do
-  #   case Argon2.check_pass password do
-  #     {:ok, u} -> {:ok, u}
-  #     {:error, reason} ->
-  #   end
-  # end
 
   @doc false
   def changeset(user, attrs) do

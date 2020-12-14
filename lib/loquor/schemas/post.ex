@@ -16,8 +16,10 @@ defmodule Loquor.Schemas.Post do
 
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:title, :content, :user, :comments])
-    |> validate_required([:content, :user])
+    |> cast(attrs, [:title, :content, :user_id])
+    |> validate_required([:content, :user_id])
+    |> cast_assoc(:user)
+    |> cast_assoc(:comments)
     |> assoc_constraint(:user)
   end
 end

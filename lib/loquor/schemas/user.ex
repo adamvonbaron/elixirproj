@@ -19,6 +19,10 @@ defmodule Loquor.Schemas.User do
     timestamps()
   end
 
+  def list_users() do
+    Loquor.Repo.all(__MODULE__)
+  end
+
   @doc false
   def changeset(user, attrs) do
     user

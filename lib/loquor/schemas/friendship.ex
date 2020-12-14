@@ -10,11 +10,9 @@ defmodule Loquor.Schemas.Friendship do
     timestamps()
   end
 
-  def changeset(friendship, _) do
+  def changeset(friendship, attrs) do
     friendship
-    |> cast_assoc(:user, with: &User.changeset/2)
-    |> cast_assoc(:friend, with: &User.changeset/2)
-    # |> validate_required([:user, :friend])
+    |> cast(attrs, [:user_id, :friend_id])
     |> assoc_constraint(:user)
     |> assoc_constraint(:friend)
   end

@@ -10,13 +10,16 @@ defmodule LoquorWeb.Router do
   end
 
   pipeline :ensure_auth do
-    plug Guardian.Plug.EnsureAuthenticated, %{
-      "typ" => "access"
-    }
+    plug Guardian.Plug.EnsureAuthenticated, claims: %{"typ" => "access"}
   end
 
   pipeline :graphql do
-    plug LoquorWeb.GraphQLContext
+    # plug LoquorWeb.GraphQLContext
+
+    plug Plug.Parsers,
+      parsers: [:urlencoded, :multipart, :json, Absinthe.Plug.Parser],
+      pass: ["*/*"],
+      json_decoder: Jason
   end
 
   scope "/api", LoquorWeb do
@@ -26,10 +29,10 @@ defmodule LoquorWeb.Router do
     post "/logout", AuthController, :logout
   end
 
-  scope "/graphql", LoquorWeb do
+  scope "/graphql" do
     pipe_through [:check_auth, :ensure_auth, :graphql]
 
-    # forward "/", Absinthe.Plug, schema: LoquorWeb.Schema
+    forward "/", Absinthe.Plug, schema: Loquor.Graphql.Schema
   end
 
   # Enables LiveDashboard only for development
@@ -47,6 +50,6 @@ defmodule LoquorWeb.Router do
       live_dashboard "/dashboard", metrics: LoquorWeb.Telemetry
     end
 
-    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: LoquorWeb.Schema
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: Loquor.Graphql.Schema
   end
 end

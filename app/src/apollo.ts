@@ -3,7 +3,8 @@ import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
 const link = createHttpLink({
-  uri: "https://localhost:4000/graphql",
+  uri: "https://localhost:4001/graphql",
+  credentials: "include",
 });
 
 const cache = new InMemoryCache();

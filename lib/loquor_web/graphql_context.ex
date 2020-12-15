@@ -3,6 +3,8 @@ defmodule LoquorWeb.GraphQLContext do
 
   import Plug.Conn
 
+  require Logger
+
   def init(opts), do: opts
 
   def call(conn, _) do
@@ -13,16 +15,15 @@ defmodule LoquorWeb.GraphQLContext do
   end
 
   defp build_context(conn) do
-    with %Plug.Conn{cookies: cookies} <- fetch_cookies(conn, signed: true) do
-      with {:ok, current_user} <- authorize_user(Map.get(cookies, "jwt")) do
-        {:ok, current_user: current_user}
-      else
-        _ -> {:error, "unable to authenticate user with provided credentials"}
-      end
+    Logger.info("in the shit my man")
+    %Plug.Conn{cookies: bobies} = fetch_cookies(conn, signed: true)
+    Logger.info(inspect(Map.get(bobies, "jwt")))
+
+    with %Plug.Conn{cookies: cookies} <- fetch_cookies(conn, signed: true),
+         {:ok, current_user} <- LoquorWeb.Authentication.authorize_user(Map.get(cookies, "jwt")) do
+      {:ok, current_user: current_user}
     else
-      _ -> {:error, "no cookie found"}
+      _ -> {:error, "unauthorized"}
     end
   end
-
-  defp authorize_user(_), do: {:ok, %{}}
 end

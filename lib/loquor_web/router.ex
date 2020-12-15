@@ -5,16 +5,8 @@ defmodule LoquorWeb.Router do
     plug :accepts, ["json"]
   end
 
-  pipeline :check_auth do
-    plug Loquor.Guardian.Pipeline
-  end
-
-  pipeline :ensure_auth do
-    plug Guardian.Plug.EnsureAuthenticated, claims: %{"typ" => "access"}
-  end
-
   pipeline :graphql do
-    # plug LoquorWeb.GraphQLContext
+    plug LoquorWeb.GraphQLContext
 
     plug Plug.Parsers,
       parsers: [:urlencoded, :multipart, :json, Absinthe.Plug.Parser],
@@ -23,14 +15,14 @@ defmodule LoquorWeb.Router do
   end
 
   scope "/api", LoquorWeb do
-    pipe_through [:api, :check_auth]
+    pipe_through [:api]
 
     post "/login", AuthController, :login
     post "/logout", AuthController, :logout
   end
 
   scope "/graphql" do
-    pipe_through [:check_auth, :ensure_auth, :graphql]
+    pipe_through [:graphql]
 
     forward "/", Absinthe.Plug, schema: Loquor.Graphql.Schema
   end

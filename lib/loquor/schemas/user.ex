@@ -23,6 +23,10 @@ defmodule Loquor.Schemas.User do
     Loquor.Repo.all(__MODULE__)
   end
 
+  def by_id(id) do
+    Loquor.Repo.get_by(__MODULE__, id: id)
+  end
+
   @doc false
   def changeset(user, attrs) do
     user

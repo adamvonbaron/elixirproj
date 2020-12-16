@@ -14,6 +14,14 @@ defmodule Loquor.Schemas.Post do
     timestamps()
   end
 
+  def list_posts() do
+    Loquor.Repo.all(__MODULE__) |> Loquor.Repo.preload(:user)
+  end
+
+  def get_author(%__MODULE__{user: user}) do
+    {:ok, Loquor.Schemas.User.by_id(user.id)}
+  end
+
   def changeset(post, attrs) do
     post
     |> cast(attrs, [:title, :content, :user_id])

@@ -27,6 +27,10 @@ defmodule Loquor.Schemas.User do
     Loquor.Repo.get_by(__MODULE__, id: id)
   end
 
+  def get_field(%__MODULE__{} = user, fieldname) when is_atom(fieldname) do
+    {:ok, Map.get(user, fieldname)}
+  end
+
   @doc false
   def changeset(user, attrs) do
     user

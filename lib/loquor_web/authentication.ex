@@ -46,6 +46,6 @@ defmodule LoquorWeb.Authentication do
     end
   end
 
-  defp sanitize_user(user), do: user |> Map.from_struct() |> Map.drop([:password, :password_hash])
   defp sanitize_user(nil), do: nil
+  defp sanitize_user(user), do: user |> Map.from_struct() |> Map.drop([:password, :password_hash])
 end

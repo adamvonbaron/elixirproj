@@ -15,6 +15,7 @@ defmodule LoquorWeb.Schemas.BaseTypes do
     field :id, :id
     field :title, :string
     field :content, :string
+    field :inserted_at, :date
 
     field :author, :user do
       resolve(fn post, _, _ -> Loquor.Schemas.Post.get_author(post) end)

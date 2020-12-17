@@ -4,6 +4,23 @@ defmodule Loquor.Graphql.Schema do
   import_types(LoquorWeb.Schemas.BaseTypes)
 
   alias LoquorWeb.Resolvers
+  alias Loquor.Schemas.{User, Post, Comment, Friendship}
+
+  def context(ctx) do
+    loader =
+      Dataloader.new()
+      |> Dataloader.add_source(User, User.datasource())
+      |> Dataloader.add_source(Post, Post.datasource())
+      |> Dataloader.add_source(Comment, Comment.datasource())
+      |> Dataloader.add_source(Friendship, Friendship.datasource())
+      |> Dataloader.run()
+
+    Map.put(ctx, :loader, loader)
+  end
+
+  def plugins do
+    [Absinthe.Middleware.Dataloader | Absinthe.Plugin.defaults()]
+  end
 
   query do
     @desc "gets all users"

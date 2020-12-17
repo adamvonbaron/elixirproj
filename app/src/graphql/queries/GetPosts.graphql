@@ -9,5 +9,14 @@ query GetPosts {
       email
       username
     }
+    comments {
+      id
+      content
+      insertedAt
+      author {
+        id
+        username
+      }
+    }
   }
 }

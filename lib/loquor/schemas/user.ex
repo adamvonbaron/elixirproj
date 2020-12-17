@@ -4,6 +4,8 @@ defmodule Loquor.Schemas.User do
   alias Loquor.Schemas.Post
   alias Loquor.Schemas.Comment
 
+  require Logger
+
   schema "users" do
     field :email, :string
     field :firstname, :string
@@ -30,6 +32,10 @@ defmodule Loquor.Schemas.User do
   def get_field(%__MODULE__{} = user, fieldname) when is_atom(fieldname) do
     {:ok, Map.get(user, fieldname)}
   end
+
+  def datasource(), do: Dataloader.Ecto.new(Loquor.Repo, query: &query/2)
+
+  def query(__MODULE__, _params), do: __MODULE__
 
   @doc false
   def changeset(user, attrs) do

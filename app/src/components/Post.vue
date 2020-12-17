@@ -28,18 +28,27 @@
       <div class="card-footer" />
     </div>
     <div class="p-4">
-      <comments />
+      <comment
+        v-for="comment in post.comments"
+        :key="comment.id"
+        :comment="comment"
+      />
+    </div>
+    <div class="p-4">
+      <add-comment />
     </div>
   </article>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import Comments from "./Comments.vue";
+import Comment from "./Comment.vue";
+import AddComment from "./AddComment.vue";
 export default Vue.extend({
   name: "Post",
   components: {
-    Comments,
+    Comment,
+    AddComment,
   },
   props: {
     post: Object,

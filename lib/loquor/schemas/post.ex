@@ -22,6 +22,9 @@ defmodule Loquor.Schemas.Post do
     {:ok, Loquor.Schemas.User.by_id(user.id)}
   end
 
+  def datasource(), do: Dataloader.Ecto.new(Loquor.Repo, query: &query/2)
+  def query(queryable, _params), do: queryable
+
   def changeset(post, attrs) do
     post
     |> cast(attrs, [:title, :content, :user_id])

@@ -13,11 +13,16 @@ defmodule Loquor.Schemas.Comment do
     timestamps()
   end
 
+  def datasource(), do: Dataloader.Ecto.new(Loquor.Repo, query: &query/2)
+  def query(queryable, _params), do: queryable
+
   def changeset(comment, attrs) do
     comment
-    |> cast(attrs, [:content, :user, :post])
-    |> validate_required([:content, :user, :post])
+    |> cast(attrs, [:content, :user_id, :post_id])
+    |> validate_required([:content, :user_id, :post_id])
     |> assoc_constraint(:post)
     |> assoc_constraint(:user)
+    |> cast_assoc(:post)
+    |> cast_assoc(:user)
   end
 end

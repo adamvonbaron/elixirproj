@@ -22,7 +22,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-export default Vue.extend({
-  name: "AddComment",
-});
+import Component from "vue-class-component";
+
+@Component
+export default class AddComment extends Vue {}
 </script>

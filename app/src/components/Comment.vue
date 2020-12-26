@@ -23,13 +23,12 @@
 
 <script lang="ts">
 import Vue from "vue";
-export default Vue.extend({
-  name: "Comment",
+import Component from "vue-class-component";
+
+@Component({
   props: {
     comment: Object,
   },
-  created() {
-    console.log(this.comment);
-  },
-});
+})
+export default class Comment extends Vue {}
 </script>

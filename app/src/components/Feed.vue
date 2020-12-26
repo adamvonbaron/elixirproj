@@ -8,10 +8,11 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Post from "@/src/components/Post.vue";
+import Component from "vue-class-component";
+import Post from "@/components/Post.vue";
 import GetPostsQuery from "@/graphql/queries/GetPosts.graphql";
-export default Vue.extend({
-  name: "Feed",
+
+@Component({
   components: {
     Post,
   },
@@ -21,10 +22,8 @@ export default Vue.extend({
       update: (data) => data.posts,
     },
   },
-  data() {
-    return {
-      posts: [],
-    };
-  },
-});
+})
+export default class Feed extends Vue {
+  posts: any[] = [];
+}
 </script>

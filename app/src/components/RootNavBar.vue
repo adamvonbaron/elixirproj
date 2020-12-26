@@ -8,7 +8,7 @@
       <template slot="end">
         <b-navbar-item tag="div">
           <div class="buttons">
-            <b-button @click="logoutUser()" class="is-primary is-light">
+            <b-button class="is-primary is-light" @click="logoutUser()">
               logout
             </b-button>
           </div>
@@ -20,23 +20,18 @@
 
 <script lang="ts">
 import Vue from "vue";
-import axios from "../axios";
-import { deleteUser } from "../services/authentication";
+import Component from "vue-class-component";
+import axios from "@/axios";
+import { deleteUser } from "@/services/authentication";
 
-export default Vue.extend({
-  name: "RootNavBar",
-  methods: {
-    async logoutUser() {
-      const { data } = await axios.post(
-        "/logout",
-        {},
-        { withCredentials: true }
-      );
-      deleteUser();
-      this.$router.push({ path: "/" });
-    },
-  },
-});
+@Component
+export default class RootNavBar extends Vue {
+  async logoutUser(): Promise<void> {
+    await axios.post("/logout", {}, { withCredentials: true });
+    deleteUser();
+    this.$router.push({ path: "/" });
+  }
+}
 </script>
 
 <style lang="scss">

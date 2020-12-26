@@ -3,7 +3,8 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-export default Vue.extend({
-  name: "NotFoundView",
-});
+import Component from "vue-class-component";
+
+@Component
+export default class NotFoundView extends Vue {}
 </script>

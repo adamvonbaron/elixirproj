@@ -9,15 +9,17 @@
 
 <script lang="ts">
 import Vue from "vue";
-import RootNavBar from "../components/RootNavBar.vue";
-import Feed from "../components/Feed.vue";
-export default Vue.extend({
-  name: "HomeView",
+import Component from "vue-class-component";
+import RootNavBar from "@/components/RootNavBar.vue";
+import Feed from "@/components/Feed.vue";
+
+@Component({
   components: {
     Feed,
     RootNavBar,
   },
-});
+})
+export default class HomeView extends Vue {}
 </script>
 
 <style lang="scss">

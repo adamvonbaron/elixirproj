@@ -8,8 +8,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Post from "./Post.vue";
-import GetPostsQuery from "../graphql/queries/GetPosts.graphql";
+import Post from "@/src/components/Post.vue";
+import GetPostsQuery from "@/graphql/queries/GetPosts.graphql";
 export default Vue.extend({
   name: "Feed",
   components: {

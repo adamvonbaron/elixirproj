@@ -42,10 +42,11 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Comment from "./Comment.vue";
-import AddComment from "./AddComment.vue";
-export default Vue.extend({
-  name: "Post",
+import Component from "vue-class-component";
+import Comment from "@/components/Comment.vue";
+import AddComment from "@/components/AddComment.vue";
+
+@Component({
   components: {
     Comment,
     AddComment,
@@ -53,5 +54,6 @@ export default Vue.extend({
   props: {
     post: Object,
   },
-});
+})
+export default class Post extends Vue {}
 </script>

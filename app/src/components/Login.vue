@@ -16,30 +16,26 @@
 
 <script lang="ts">
 import Vue from "vue";
-import axios from "../axios";
-import { storeUser } from "../services/authentication";
+import Component from "vue-class-component";
+import axios from "@/axios";
+import { storeUser } from "@/services/authentication";
 
-export default Vue.extend({
-  name: "Login",
-  data: () => {
-    return {
-      email: "",
-      password: "",
-    };
-  },
-  methods: {
-    async loginUser() {
-      const { data } = await axios.post(
-        "/login",
-        {
-          email: this.email,
-          password: this.password,
-        },
-        { withCredentials: true }
-      );
-      storeUser(data);
-      this.$router.push({ path: "/home" });
-    },
-  },
-});
+@Component
+export default class Login extends Vue {
+  email = "";
+  password = "";
+
+  async loginUser(): Promise<void> {
+    const { data } = await axios.post(
+      "/login",
+      {
+        email: this.email,
+        password: this.password,
+      },
+      { withCredentials: true }
+    );
+    storeUser(data);
+    this.$router.push({ path: "/home" });
+  }
+}
 </script>
